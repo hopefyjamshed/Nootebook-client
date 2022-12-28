@@ -1,11 +1,14 @@
 
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/Authprovider/Authprovider';
 
 const Login = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
     const { user, login } = useContext(AuthContext)
     const [loginError, setLoginError] = useState('')
+    let from = location.state?.from?.pathname || "/";
 
     const handlelogin = event => {
 
@@ -18,6 +21,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log(err)
@@ -59,6 +63,7 @@ const Login = () => {
                             </div>
                         </form>
                         <p className='text-xl mb-2 text-center'>New here?<Link to='/auth/register' className='text text-lime-400 font-bold' >Register Now</Link></p>
+                        <p className=' text-red-600 mt-2 mb-2 text-center'>{loginError}</p>
                     </div>
                 </div>
             </div>

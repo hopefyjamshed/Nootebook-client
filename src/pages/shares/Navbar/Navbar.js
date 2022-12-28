@@ -1,9 +1,21 @@
 import React, { useContext } from 'react';
 import { FaBeer, FaBell, FaHome, FaInbox, FaNeos, FaPhotoVideo } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { user, logout } = useContext(AuthContext)
+
+    const handlelogout = () => {
+        logout()
+            .then(() => {
+                navigate('/auth/login')
+            })
+            .catch(err => {
+                console.log(err)
+
+            })
+    }
 
     const menuitems = <>
         <li>
@@ -15,7 +27,7 @@ const Navbar = () => {
         <li><a>Settings</a></li>
         {
             user?.email ?
-                <li><button>logout</button></li>
+                <li><button onClick={handlelogout}>logout</button></li>
                 :
                 <li><Link to='/auth/login'>Login</Link></li>
         }
