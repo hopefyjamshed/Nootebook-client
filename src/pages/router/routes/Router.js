@@ -1,17 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../../../authentication/login/Login";
 import Register from "../../../authentication/register/Register";
+import About from "../../about/About";
 import Home from "../../Home/home/Home";
 import Auth from "../../layout/Auth";
 import Main from "../../layout/Main";
 import Inbox from "../../other/inbox/Inbox";
 import Media from "../../other/media/Media";
 import Notifications from "../../other/notifications/Notifications";
+import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>,
+        element: <PrivateRouter><Main></Main></PrivateRouter>,
         children: [
             {
                 path: '/',
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
                 path: '/media',
                 element: <Media></Media>
             },
+            {
+                path: '/about',
+                element: <About></About>
+            }
 
         ]
     },

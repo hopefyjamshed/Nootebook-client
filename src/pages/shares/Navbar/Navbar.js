@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { FaBeer, FaBell, FaHome, FaInbox, FaNeos, FaPhotoVideo } from 'react-icons/fa';
+import { HiChatAlt, IconName } from "react-icons/hi";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 const Navbar = () => {
@@ -19,12 +20,12 @@ const Navbar = () => {
 
     const menuitems = <>
         <li>
-            <a className="justify-between">
+            <Link to='/about' className="justify-between">
                 About
                 <span className="badge">user</span>
-            </a>
+            </Link>
         </li>
-        <li><a>Settings</a></li>
+        <li><Link to='/'>Settings</Link></li>
         {
             user?.email ?
                 <li><button onClick={handlelogout}>logout</button></li>
@@ -43,7 +44,7 @@ const Navbar = () => {
                 <div className='navbar-center grid grid-flow-col gap-4 lg:gap-6 px-3 py-1 rounded-lg'>
                     <Link to='/' className=' rounded-full hover:bg-gray-500 p-1'><FaHome title='home' className='text-white lg:text-3xl'></FaHome></Link>
                     <Link to='/inbox' className=' rounded-full hover:bg-gray-500 p-1'>
-                        <FaInbox title='inbox' className='text-white lg:text-3xl'></FaInbox></Link>
+                        <HiChatAlt title='inbox' className='text-white lg:text-3xl'></HiChatAlt></Link>
                     <Link to='/notifications' className=' rounded-full hover:bg-gray-500 p-1'>
                         <FaBell title='notification' className='text-white lg:text-3xl'></FaBell></Link>
 
@@ -84,14 +85,7 @@ const Navbar = () => {
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-
-
-
                             {menuitems}
-
-
-
-
                         </ul>
                     </div>
                 </div>
