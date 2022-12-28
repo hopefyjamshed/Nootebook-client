@@ -1,10 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './pages/router/routes/Router';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="App">
+    <div className=" opacity-100 max-w-[1440px] mx-auto">
+      <RouterProvider router={router}>
 
+      </RouterProvider>
+      <Toaster></Toaster>
     </div>
   );
 }
