@@ -3,6 +3,9 @@ import { FaBeer, FaBell, FaHome, FaInbox, FaNeos, FaPhotoVideo } from 'react-ico
 import { HiChatAlt, IconName } from "react-icons/hi";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
+import { MdChat, MdMail, MdPermMedia } from "react-icons/md";
+import { BsMessenger } from "react-icons/bs";
+
 const Navbar = () => {
     const navigate = useNavigate()
     const { user, logout } = useContext(AuthContext)
@@ -41,15 +44,15 @@ const Navbar = () => {
                     <Link to='/' className="text-white normal-case text-2xl"><span className='text-lime-400 font-extrabold text-4xl'>N</span>oteBook</Link>
                 </div>
 
-                <div className='navbar-center grid grid-flow-col gap-4 lg:gap-6 px-3 py-1 rounded-lg'>
+                <div className='navbar-center  grid grid-flow-col gap-4 lg:gap-6 px-3 py-1 rounded-lg'>
                     <Link to='/' className=' rounded-full hover:bg-gray-500 p-1'><FaHome title='home' className='text-white lg:text-3xl'></FaHome></Link>
                     <Link to='/inbox' className=' rounded-full hover:bg-gray-500 p-1'>
-                        <HiChatAlt title='inbox' className='text-white lg:text-3xl'></HiChatAlt></Link>
+                        <BsMessenger title='inbox' className='text-white lg:text-3xl'></BsMessenger></Link>
                     <Link to='/notifications' className=' rounded-full hover:bg-gray-500 p-1'>
                         <FaBell title='notification' className='text-white lg:text-3xl'></FaBell></Link>
 
                     <Link to='/media' className=' rounded-full hover:bg-gray-500 p-1'>
-                        <FaPhotoVideo title='media' className='text-white lg:text-3xl'></FaPhotoVideo></Link>
+                        <MdPermMedia title='media' className='text-white lg:text-3xl'></MdPermMedia></Link>
 
                 </div>
 
