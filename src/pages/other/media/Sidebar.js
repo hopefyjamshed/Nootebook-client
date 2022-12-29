@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 
 const Sidebar = () => {
@@ -7,12 +8,12 @@ const Sidebar = () => {
         <div>
 
 
-            <div class="w-full  p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="w-full p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">users around you</h5>
-                    <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <h5 class="text-2xl font-bold leading-none text-gray-900 dark:text-white">users around you</h5>
+                    <Link to='' class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                         View all
-                    </a>
+                    </Link>
                 </div>
                 <div class="flow-root">
                     <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -22,7 +23,7 @@ const Sidebar = () => {
                                     {user?.photoURL}
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    <p class="text-xl font-medium text-gray-900 truncate dark:text-white">
                                         {user?.displayName}
                                     </p>
                                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">

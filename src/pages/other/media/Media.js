@@ -18,8 +18,11 @@ const Media = () => {
 
     console.log(data)
     return (
-        <div className='flex'>
-            <div className='w-1/2'>
+        <div className=' lg:flex gap-4 my-8'>
+            <div className='lg:w-1/2 mb-5'>
+                <Sidebar></Sidebar>
+            </div>
+            <div className='lg:w-1/2'>
                 {
                     data?.map(da => <MediaCard
                         key={da._id}
@@ -27,9 +30,7 @@ const Media = () => {
                     ></MediaCard>)
                 }
             </div>
-            <div className='w-1/2'>
-                <Sidebar></Sidebar>
-            </div>
+
         </div>
     );
 };

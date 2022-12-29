@@ -3,16 +3,24 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
+import img from '../../../assets/images/profileimg.jpg'
 
 
 const Upload = () => {
     const navigate = useNavigate()
     const [showEmojis, setShowEmojis] = useState(false);
+    const [profile, setProfile] = useState([])
     const [upload, setUpload] = useState('')
     const { register, formState: { errors }, handleSubmit, resetField } = useForm();
     const { user } = useContext(AuthContext)
     const imghostkey = process.env.REACT_APP_imgbb_key;
 
+    fetch(`http://localhost:5000/profile/${user?.email}`)
+        .then(res => res.json())
+        .then(result => {
+            console.log()
+            setProfile(result)
+        })
 
     const handleUpload = data => {
         const image = data?.photo[0];
@@ -61,7 +69,13 @@ const Upload = () => {
                 <div className="card-body">
                     <div className="avatar">
                         <div className="w-12 rounded-full">
-                            <img src="https://placeimg.com/192/192/people" />
+                            {
+                                profile[0]?.image
+                                    ?
+                                    <img src={profile[0]?.image} alt='profilePicture' />
+                                    :
+                                    <img src={img} alt='imgsymbol' />
+                            }
                         </div>
                     </div>
 
@@ -72,7 +86,7 @@ const Upload = () => {
                         <hr />
                         {/* photo field  */}
                         <input name='photo' {...register('photo')} type="file" className='bg-lime-500 rounded-full mt-3' placeholder='Photo' />
-                        <input className='btn ml-8 bg-slate-400' type="submit" value="Post" />
+                        <input className='btn mt-5 w-full lg:w-32 lg:ml-8 bg-slate-400' type="submit" value="Post" />
                     </form>
 
 

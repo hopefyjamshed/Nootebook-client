@@ -2,9 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../../../authentication/login/Login";
 import Register from "../../../authentication/register/Register";
 import About from "../../about/About";
+import AboutForm from "../../about/AboutForm";
 import Home from "../../Home/home/Home";
 import Auth from "../../layout/Auth";
 import Main from "../../layout/Main";
+import Detail from "../../other/detail/Detail";
 import Inbox from "../../other/inbox/Inbox";
 import Media from "../../other/media/Media";
 import Notifications from "../../other/notifications/Notifications";
@@ -32,8 +34,18 @@ const router = createBrowserRouter([
                 element: <Media></Media>
             },
             {
-                path: '/about',
-                element: <About></About>
+                path: '/about/:email',
+                element: <About></About>,
+                loader: ({ params }) => fetch(`http://localhost:5000/profile/${params.email}`)
+            },
+            {
+                path: '/detail/:id',
+                element: <Detail></Detail>,
+                loader: ({ params }) => fetch(`http://localhost:5000/uploaded/${params.id}`)
+            },
+            {
+                path: '/aboutForm',
+                element: <AboutForm></AboutForm>
             }
 
         ]
