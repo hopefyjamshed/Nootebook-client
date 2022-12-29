@@ -95,7 +95,7 @@ const DetailCard = () => {
                     <div className='flex mt-3 justify-between px-12'>
                         <button className='btn'><FaThumbsUp className='text-white text-3xl'></FaThumbsUp> <span className='text-xl ml-1'>Like</span></button>
 
-                        <Link to={`/detail/${_id}`} className='btn'><BiDetail className='text-white text-3xl'></BiDetail><span className='text-xl text-white ml-1'>Detail</span></Link>
+                        {/* <Link to={`/detail/${_id}`} className='btn'><BiDetail className='text-white text-3xl'></BiDetail><span className='text-xl text-white ml-1'>Detail</span></Link> */}
 
 
                     </div>
