@@ -5,13 +5,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'tw-elements';
 import Authprovider from './context/Authprovider/Authprovider';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+
+// Create a client
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Authprovider>
-      <App />
-    </Authprovider>
+    <QueryClientProvider client={queryClient}>
+      <Authprovider>
+        <App />
+      </Authprovider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

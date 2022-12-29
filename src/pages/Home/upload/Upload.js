@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 
 
 const Upload = () => {
+    const navigate = useNavigate()
     const [showEmojis, setShowEmojis] = useState(false);
     const [upload, setUpload] = useState('')
     const { register, formState: { errors }, handleSubmit, resetField } = useForm();
@@ -17,7 +19,7 @@ const Upload = () => {
         const imageHostingKey = process.env.REACT_APP_imgbb_key;
         const formData = new FormData();
         formData.append("image", image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostingKey}`
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
         fetch(url, {
             method: 'POST',
             body: formData,
@@ -45,6 +47,7 @@ const Upload = () => {
                         .then(result => {
                             console.log(result)
                             toast.success('successfully posted!')
+                            navigate('/media')
                         })
 
                 }
