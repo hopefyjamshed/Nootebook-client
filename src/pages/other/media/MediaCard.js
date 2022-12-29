@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 import { BiDetail, BiMessageAlt } from "react-icons/bi";
 import { toast } from 'react-hot-toast';
+import img from '../../../assets/images/profileimg.jpg'
 
 const MediaCard = ({ da }) => {
+    const [profile, setProfile] = useState([])
     const { user } = useContext(AuthContext)
     const { email, image, caption, _id } = da
 
-
+    fetch(`https://notebook-server.vercel.app/profile/${user?.email}`)
+        .then(res => res.json())
+        .then(result => {
+            console.log()
+            setProfile(result)
+        })
     return (
         <div>
             <div className="card mb-5 bg-gray-700 shadow-xl">
@@ -18,7 +25,12 @@ const MediaCard = ({ da }) => {
                     <div className='flex'>
                         <div className="avatar online">
                             <div className="w-12 rounded-full">
-                                <img src="https://placeimg.com/192/192/people" />
+                                {
+                                    profile[0]?.image ?
+                                        <img src={profile[0]?.image} alt='profilepicure' />
+                                        :
+                                        <img src={img} alt='imglogo' />
+                                }
                             </div>
                         </div>
                         <h2 className="card-title ml-2 text-white">{user?.displayName}</h2>
