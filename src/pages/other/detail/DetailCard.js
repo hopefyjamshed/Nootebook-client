@@ -46,6 +46,9 @@ const DetailCard = () => {
                 console.log(result)
                 toast.success('comment posted successfully!')
                 form.reset()
+                if (loading) {
+                    return <Loading></Loading>
+                }
             })
     }
 
