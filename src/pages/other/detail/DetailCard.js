@@ -6,13 +6,21 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
 import Loading from '../../shares/loading/Loading';
 import CommentCard from './CommentCard';
+import img from '../../../assets/images/profileimg.jpg'
 
 const DetailCard = () => {
+    const [profile, setProfile] = useState([])
     const [comment, setComment] = useState([])
     const data = useLoaderData()
     const { caption, _id, image, email } = data[0]
     const { user, loading } = useContext(AuthContext)
 
+    fetch(`https://notebook-server.vercel.app/profile/${user?.email}`)
+        .then(res => res.json())
+        .then(result => {
+            console.log()
+            setProfile(result)
+        })
 
     const handlecomment = (event) => {
         event.preventDefault()
@@ -26,7 +34,7 @@ const DetailCard = () => {
         }
 
 
-        fetch('http://localhost:5000/comment', {
+        fetch('https://notebook-server.vercel.app/comment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -41,7 +49,7 @@ const DetailCard = () => {
             })
     }
 
-    fetch('http://localhost:5000/comment')
+    fetch('https://notebook-server.vercel.app/comment')
         .then(res => res.json())
         .then(result => {
 
@@ -61,7 +69,13 @@ const DetailCard = () => {
                     <div className='flex'>
                         <div className="avatar online">
                             <div className="w-12 rounded-full">
-                                <img src="https://placeimg.com/192/192/people" alt='' />
+                                {
+                                    profile[0]?.image
+                                        ?
+                                        <img src={profile[0]?.image} alt='profilepicture' />
+                                        :
+                                        <img src={img} alt='imglogo' />
+                                }
                             </div>
                         </div>
                         <h2 className="card-title ml-2 text-white">{user?.displayName}</h2>

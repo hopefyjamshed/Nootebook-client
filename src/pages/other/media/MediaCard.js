@@ -9,32 +9,7 @@ const MediaCard = ({ da }) => {
     const { user } = useContext(AuthContext)
     const { email, image, caption, _id } = da
 
-    // const handlecomment = (event) => {
-    //     event.preventDefault()
-    //     const form = event.target
-    //     const comment = form.comment.value
-    //     console.log(comment)
-    //     const commentData = {
-    //         comment: comment,
-    //         email: user?.email,
-    //         user: user?.displayName,
-    //     }
 
-
-    //     fetch('http://localhost:5000/comment', {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(commentData)
-    //     })
-    //         .then(res => res.json())
-    //         .then(result => {
-    //             console.log(result)
-    //             toast.success('comment posted successfully!')
-    //             form.reset()
-    //         })
-    // }
     return (
         <div>
             <div className="card mb-5 bg-gray-700 shadow-xl">

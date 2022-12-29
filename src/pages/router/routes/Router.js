@@ -36,12 +36,12 @@ const router = createBrowserRouter([
             {
                 path: '/about/:email',
                 element: <About></About>,
-                loader: ({ params }) => fetch(`http://localhost:5000/profile/${params.email}`)
+                loader: ({ params }) => fetch(`https://notebook-server.vercel.app/profile/${params.email}`)
             },
             {
                 path: '/detail/:id',
                 element: <Detail></Detail>,
-                loader: ({ params }) => fetch(`http://localhost:5000/uploaded/${params.id}`)
+                loader: ({ params }) => fetch(`https://notebook-server.vercel.app/uploaded/${params.id}`)
             },
             {
                 path: '/aboutForm',

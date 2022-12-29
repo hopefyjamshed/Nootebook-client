@@ -5,7 +5,7 @@ import MediaCard from './MediaCard';
 import Sidebar from './Sidebar';
 
 const Media = () => {
-    const url = 'http://localhost:5000/uploaded'
+    const url = 'https://notebook-server.vercel.app/uploaded'
     const { data, refetch } = useQuery({
         queryKey: ['uploadedData'],
         queryFn: async () => {

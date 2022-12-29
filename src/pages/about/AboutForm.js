@@ -33,7 +33,7 @@ const AboutForm = () => {
                     console.log(profileData)
 
 
-                    fetch('http://localhost:5000/profile', {
+                    fetch('https://notebook-server.vercel.app/profile', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
