@@ -47,7 +47,6 @@ const MediaCard = ({ da }) => {
             .then(res => res.json())
             .then(result => {
 
-                toast.success('like added successfully')
                 if (loading) {
                     return <Loading></Loading>
                 }
