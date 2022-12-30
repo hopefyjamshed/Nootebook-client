@@ -9,6 +9,8 @@ import CommentCard from './CommentCard';
 import img from '../../../assets/images/profileimg.jpg'
 
 const DetailCard = () => {
+    const [active, setActive] = useState(false);
+    const [likes, setLikes] = useState([])
     const [profile, setProfile] = useState([])
     const [comment, setComment] = useState([])
     const data = useLoaderData()
@@ -20,6 +22,9 @@ const DetailCard = () => {
         .then(result => {
             console.log()
             setProfile(result)
+            if (loading) {
+                return <Loading></Loading>
+            }
         })
 
     const handlecomment = (event) => {
@@ -67,6 +72,50 @@ const DetailCard = () => {
             }
         })
 
+
+
+    // add like to database 
+    const handlelike = (id) => {
+
+        setActive(!active);
+
+        const likeData = {
+            email: user?.email,
+            number: _id,
+            user: user?.displayName,
+        }
+        console.log(likeData)
+        // adding like to database 
+
+        fetch('http://localhost:5000/like', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(likeData)
+        })
+            .then(res => res.json())
+            .then(result => {
+
+                toast.success('like added successfully')
+                if (loading) {
+                    return <Loading></Loading>
+                }
+            })
+    }
+
+    fetch(`http://localhost:5000/likes/${_id}`)
+        .then(res => res.json())
+        .then(result => {
+
+            setLikes(result)
+            if (loading) {
+                return <Loading></Loading>
+            }
+        })
+
+
+
     return (
         <div>
 
@@ -93,7 +142,13 @@ const DetailCard = () => {
                 <figure><img src={image} className=' h-96 w-96 rounded-lg' alt="uploadedPhoto" /></figure>
                 <div className=' card-footer'>
                     <div className='flex mt-4 justify-between text-white text-xl px-5'>
-                        <p>Likes</p>
+                        <p>{likes.length} {
+                            likes.length > 1 ?
+                                "likes"
+                                : "like"}</p>
+
+
+
                         <p>{comment.length}{
                             comment.length > 1 ?
                                 "comments"
@@ -101,26 +156,12 @@ const DetailCard = () => {
                     </div>
                     <hr className='mt-3' />
                     <div className='flex mt-3 justify-between px-12'>
-                        <button className='btn'><FaThumbsUp className='text-white text-3xl'></FaThumbsUp> <span className='text-xl ml-1'>Like</span></button>
-
-                        {/* <Link to={`/detail/${_id}`} className='btn'><BiDetail className='text-white text-3xl'></BiDetail><span className='text-xl text-white ml-1'>Detail</span></Link> */}
 
 
                     </div>
 
                     {/* comment div  */}
                     <h1 className='text-3xl mb-3 mt-6 font-bold text-white'>Comments</h1>
-                    <div className='mt-9'>
-                        {
-                            comment?.map(com => <CommentCard
-                                key={com._id}
-                                com={com}
-                            ></CommentCard>)
-                        }
-                    </div>
-
-
-
                     <div className='py-4 px-3'>
                         <form className='flex' onSubmit={handlecomment}>
                             <textarea name='comment' className="textarea textarea-bordered textarea-ghost text-xl text-white w-full border-white" placeholder="Write a comment">
@@ -128,6 +169,20 @@ const DetailCard = () => {
                             </textarea>
                             <input className='btn' type="submit" value="Post" />
                         </form>
+                    </div>
+                    <div className='mt-9'>
+
+
+                        {
+                            comment?.map(com => <CommentCard
+                                key={com._id}
+                                com={com}
+                            ></CommentCard>)
+                        }
+
+
+
+
                     </div>
 
                 </div>

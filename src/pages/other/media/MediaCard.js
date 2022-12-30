@@ -114,9 +114,9 @@ const MediaCard = ({ da }) => {
                     <hr className='mt-3' />
                     <div className='flex mt-3 justify-between px-12'>
                         <button onClick={() => handlelike(_id)} className='btn' style={{ backgroundColor: active ? "lime" : "black" }}><FaThumbsUp className=' text-3xl text-white'></FaThumbsUp> <span className='text-xl ml-1'>Like</span></button>
-                        {/* <form onSubmit={handlelike}>
-                            <FaThumbsUp type='submit' className='text-white text-3xl'></FaThumbsUp>
-                        </form> */}
+
+
+
                         <Link to={`/detail/${_id}`} className='btn'><BiDetail className='text-white text-3xl'></BiDetail><span className='text-xl text-white ml-1'>Detail</span></Link>
 
 
