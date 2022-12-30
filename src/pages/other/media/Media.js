@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 
 import React from 'react';
+
 import MediaCard from './MediaCard';
 import Sidebar from './Sidebar';
 
 const Media = () => {
+
     const url = 'https://notebook-server.vercel.app/uploaded'
     const { data, refetch } = useQuery({
         queryKey: ['uploadedData'],
         queryFn: async () => {
             const res = await fetch(url)
             const data = await res.json()
-
+            refetch()
             return data
         }
     })

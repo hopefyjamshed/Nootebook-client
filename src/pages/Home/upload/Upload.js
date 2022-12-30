@@ -6,7 +6,9 @@ import { AuthContext } from '../../../context/Authprovider/Authprovider';
 import img from '../../../assets/images/profileimg.jpg'
 
 
+
 const Upload = () => {
+
     const navigate = useNavigate()
     const [showEmojis, setShowEmojis] = useState(false);
     const [profile, setProfile] = useState([])
@@ -15,7 +17,7 @@ const Upload = () => {
     const { user } = useContext(AuthContext)
     const imghostkey = process.env.REACT_APP_imgbb_key;
 
-    fetch(`https://notebook-server.vercel.app/profile/${user?.email}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/${user?.email}`)
         .then(res => res.json())
         .then(result => {
             console.log()

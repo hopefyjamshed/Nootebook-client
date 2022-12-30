@@ -4,7 +4,7 @@ import img from '../../../assets/images/profileimg.jpg'
 const CommentCard = ({ com }) => {
     const [profile, setProfile] = useState([])
     const { comment, _id, user, email } = com
-    fetch(`https://notebook-server.vercel.app/profile/${user?.email}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/profile/${user?.email}`)
         .then(res => res.json())
         .then(result => {
             console.log()

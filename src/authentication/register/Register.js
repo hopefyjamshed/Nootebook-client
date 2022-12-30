@@ -7,6 +7,7 @@ import Loading from '../../pages/shares/loading/Loading';
 const Register = () => {
     const { user, createUser, updateUser, loading } = useContext(AuthContext)
     const [signupError, setSignupError] = useState('')
+    const navigate = useNavigate()
 
     const handleregister = event => {
         event.preventDefault()
@@ -18,7 +19,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user
                 toast.success('user created successfully')
-
+                navigate('/')
 
                 const userInfo = {
                     displayName: name
@@ -38,6 +39,7 @@ const Register = () => {
             .catch(err => {
                 console.log(err)
                 setSignupError(err.message)
+
             })
 
 

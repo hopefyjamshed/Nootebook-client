@@ -8,7 +8,9 @@ import Loading from '../../shares/loading/Loading';
 import CommentCard from './CommentCard';
 import img from '../../../assets/images/profileimg.jpg'
 
+
 const DetailCard = () => {
+
     const [active, setActive] = useState(false);
     const [likes, setLikes] = useState([])
     const [profile, setProfile] = useState([])
@@ -62,7 +64,7 @@ const DetailCard = () => {
 
 
 
-    fetch(`https://project-notebook-d4f22.web.app/comment/${_id}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/comment/${_id}`)
         .then(res => res.json())
         .then(result => {
 
@@ -87,7 +89,7 @@ const DetailCard = () => {
         console.log(likeData)
         // adding like to database 
 
-        fetch('https://project-notebook-d4f22.web.app/like', {
+        fetch('https://notebook-server-hopefyjamshed.vercel.app/like', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -104,7 +106,7 @@ const DetailCard = () => {
             })
     }
 
-    fetch(`https://project-notebook-d4f22.web.app/likes/${_id}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/likes/${_id}`)
         .then(res => res.json())
         .then(result => {
 

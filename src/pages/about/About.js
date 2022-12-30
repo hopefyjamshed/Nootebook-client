@@ -2,7 +2,9 @@ import { FaGraduationCap, FaPenAlt } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import { MdEmail, MdLocationOn } from "react-icons/md";
 
+
 const About = () => {
+
     const about = useLoaderData()
     const { address, college, image, name, _id, email } = about[0]
 
