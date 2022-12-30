@@ -37,7 +37,7 @@ const MediaCard = ({ da }) => {
         console.log(likeData)
         // adding like to database 
 
-        fetch('http://localhost:5000/like', {
+        fetch('https://project-notebook-d4f22.web.app/like', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +53,7 @@ const MediaCard = ({ da }) => {
             })
     }
 
-    fetch(`https://notebook-server-hopefyjamshed.vercel.app/comment/${_id}`)
+    fetch(`https://project-notebook-d4f22.web.app/comment/${_id}`)
         .then(res => res.json())
         .then(result => {
 
@@ -63,7 +63,7 @@ const MediaCard = ({ da }) => {
             }
         })
 
-    fetch(`https://notebook-server-hopefyjamshed.vercel.app/likes/${_id}`)
+    fetch(`https://project-notebook-d4f22.web.app/likes/${_id}`)
         .then(res => res.json())
         .then(result => {
 
