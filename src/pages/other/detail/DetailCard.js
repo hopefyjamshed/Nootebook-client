@@ -30,6 +30,7 @@ const DetailCard = () => {
         const commentData = {
             comment: comment,
             email: user?.email,
+            id: _id,
             user: user?.displayName,
         }
 
@@ -50,9 +51,13 @@ const DetailCard = () => {
                     return <Loading></Loading>
                 }
             })
+
+
     }
 
-    fetch('https://notebook-server.vercel.app/comment')
+
+
+    fetch(`http://localhost:5000/comment/${_id}`)
         .then(res => res.json())
         .then(result => {
 
@@ -89,7 +94,10 @@ const DetailCard = () => {
                 <div className=' card-footer'>
                     <div className='flex mt-4 justify-between text-white text-xl px-5'>
                         <p>Likes</p>
-                        <p>comments</p>
+                        <p>{comment.length}{
+                            comment.length > 1 ?
+                                "comments"
+                                : "comment"}</p>
                     </div>
                     <hr className='mt-3' />
                     <div className='flex mt-3 justify-between px-12'>
