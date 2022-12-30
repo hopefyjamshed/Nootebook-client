@@ -62,7 +62,7 @@ const DetailCard = () => {
 
 
 
-    fetch(`http://localhost:5000/comment/${_id}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/comment/${_id}`)
         .then(res => res.json())
         .then(result => {
 
@@ -87,7 +87,7 @@ const DetailCard = () => {
         console.log(likeData)
         // adding like to database 
 
-        fetch('http://localhost:5000/like', {
+        fetch('https://notebook-server-hopefyjamshed.vercel.app/like', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -104,7 +104,7 @@ const DetailCard = () => {
             })
     }
 
-    fetch(`http://localhost:5000/likes/${_id}`)
+    fetch(`https://notebook-server-hopefyjamshed.vercel.app/likes/${_id}`)
         .then(res => res.json())
         .then(result => {
 
