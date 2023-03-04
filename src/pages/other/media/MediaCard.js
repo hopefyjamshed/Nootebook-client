@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/Authprovider/Authprovider';
@@ -15,12 +15,14 @@ const MediaCard = ({ da }) => {
     const { user, loading } = useContext(AuthContext)
     const { email, image, caption, _id } = da
 
-    fetch(`https://notebook-server-hopefyjamshed.vercel.app/profile/${user?.email}`)
-        .then(res => res.json())
-        .then(result => {
-            console.log()
-            setProfile(result)
-        })
+    useEffect(() => {
+        fetch(`https://notebook-server-hopefyjamshed.vercel.app/profile/${user?.email}`)
+            .then(res => res.json())
+            .then(result => {
+                console.log()
+                setProfile(result)
+            })
+    }, [user?.email])
 
 
 
@@ -53,15 +55,19 @@ const MediaCard = ({ da }) => {
             })
     }
 
-    fetch(`https://notebook-server-hopefyjamshed.vercel.app/comment/${_id}`)
-        .then(res => res.json())
-        .then(result => {
+    useEffect(() => {
+        fetch(`https://notebook-server-hopefyjamshed.vercel.app/comment/${_id}`)
+            .then(res => res.json())
+            .then(result => {
 
-            setComment(result)
-            if (loading) {
-                return <Loading></Loading>
-            }
-        })
+                setComment(result)
+                if (loading) {
+                    return <Loading></Loading>
+                }
+            })
+    }, [_id])
+
+
 
     fetch(`https://notebook-server-hopefyjamshed.vercel.app/likes/${_id}`)
         .then(res => res.json())
